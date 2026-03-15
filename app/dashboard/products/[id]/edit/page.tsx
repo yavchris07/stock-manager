@@ -2,17 +2,28 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { StockService } from "@/infrastructure/services/StockService";
+// import { StockService } from "@/infrastructure/services/StockService";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
+import { StockService } from "@/infrastructure/service/stock-service";
+
+type Product = {
+  id: string;
+  name: string;
+  sku: string;
+  price: number;
+  stock: number;
+  category: string;
+  image: string;
+};
 
 export default function EditProductPage() {
   const params = useParams();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<Product>();
 
   useEffect(() => {
     StockService.getProductById(params.id as string).then((data) => {
@@ -21,7 +32,12 @@ export default function EditProductPage() {
     });
   }, [params.id]);
 
-  if (loading) return <div className="p-8"><Skeleton className="h-96 w-full" /></div>;
+  if (loading)
+    return (
+      <div className="p-8">
+        <Skeleton className="h-96 w-full" />
+      </div>
+    );
   if (!product) return <div>Product not found</div>;
 
   return (
@@ -37,7 +53,9 @@ export default function EditProductPage() {
           <Input type="number" defaultValue={product.price} />
         </div>
         <div className="flex justify-end gap-3">
-          <Button type="button" variant="outline" onClick={() => router.back()}>Cancel</Button>
+          <Button type="button" variant="outline" onClick={() => router.back()}>
+            Cancel
+          </Button>
           <Button type="button">Save Changes</Button>
         </div>
       </form>

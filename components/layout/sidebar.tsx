@@ -86,7 +86,7 @@ export function Sidebar() {
       <nav className="flex-1 p-4 space-y-6">
         {menuItems.map((item) => (
           <div key={item.title}>
-            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2 flex gap-3 center">
+            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2 flex gap-3 align">
               {<item.icon />} {item.title}
             </div>
             <div className="space-y-1">

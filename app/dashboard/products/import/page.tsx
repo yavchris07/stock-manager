@@ -10,10 +10,11 @@ export default function ImportProductsPage() {
   const { addToast } = useToast();
   const [dragActive, setDragActive] = useState(false);
 
-  const handleFile = (e: any) => {
+  const handleFile = (e:React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     addToast("File uploaded. Processing 150 rows...", "info");
     setTimeout(() => addToast("Import successful!", "success"), 2000);
+
   };
 
   return (
@@ -30,7 +31,7 @@ export default function ImportProductsPage() {
         <FileSpreadsheet className="h-12 w-12 text-slate-400 mx-auto mb-4" />
         <p className="text-lg font-medium">Drag & Drop CSV file here</p>
         <p className="text-sm text-slate-500 mb-6">or click to browse</p>
-        <Button variant="outline" onClick={handleFile}>
+        <Button variant="outline">
           <UploadCloud className="mr-2 h-4 w-4" /> Select File
         </Button>
         <div className="mt-8 text-left">
