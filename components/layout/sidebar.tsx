@@ -3,10 +3,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  LayoutDashboard, Package, Warehouse, ShoppingCart, 
-  Tag, Users, Settings, FileText, LogOut, PlusCircle, 
-  ScanLine, TrendingUp, FileSpreadsheet 
+import {
+  LayoutDashboard,
+  Package,
+  Warehouse,
+  ShoppingCart,
+  Tag,
+  Users,
+  Settings,
+  FileText,
+  LogOut,
+  PlusCircle,
+  ScanLine,
+  TrendingUp,
+  FileSpreadsheet,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,10 +27,10 @@ const menuItems = [
     href: "/dashboard",
     subItems: [
       { label: "Overview", href: "/dashboard", id: 5 },
-      { label: "Sales", href: "/dashboard/sales", id: 6 },
+      { label: "Ventes", href: "/dashboard/sales", id: 6 },
       { label: "Stock", href: "/dashboard/stock", id: 7 },
-      { label: "Activity", href: "/dashboard/activity", id: 8 },
-    ]
+      { label: "Activites", href: "/dashboard/activity", id: 8 },
+    ],
   },
   {
     title: "Produits",
@@ -30,7 +40,7 @@ const menuItems = [
       { label: "Liste", href: "/dashboard/products", id: 9 },
       { label: "Ajouter", href: "/dashboard/products/new", id: 10 },
       { label: "Scanner", href: "/dashboard/products/scanner", id: 14 },
-    ]
+    ],
   },
   {
     title: "Entrepôts",
@@ -39,7 +49,7 @@ const menuItems = [
     subItems: [
       { label: "Liste", href: "/dashboard/warehouses", id: 15 },
       { label: "Stock", href: "/dashboard/warehouses/stock", id: 17 },
-    ]
+    ],
   },
   {
     title: "Ventes",
@@ -48,7 +58,7 @@ const menuItems = [
     subItems: [
       { label: "POS Interface", href: "/dashboard/sales/pos", id: 24 },
       { label: "Historique", href: "/dashboard/sales", id: 23 },
-    ]
+    ],
   },
   {
     title: "Paramètres",
@@ -57,7 +67,7 @@ const menuItems = [
     subItems: [
       { label: "Utilisateurs", href: "/dashboard/settings/users", id: 37 },
       { label: "Rôles", href: "/dashboard/settings/roles", id: 39 },
-    ]
+    ],
   },
 ];
 
@@ -67,15 +77,17 @@ export function Sidebar() {
   return (
     <div className="w-64 h-screen bg-slate-900 text-slate-50 flex flex-col fixed left-0 top-0 overflow-y-auto">
       <div className="p-6 border-b border-slate-800">
-        <h1 className="text-xl font-bold tracking-tight text-white">GESTION STOCK</h1>
+        <h1 className="text-xl font-bold tracking-tight text-white">
+          GESTION STOCK
+        </h1>
         <p className="text-xs text-slate-400 mt-1">v2.4.0 Pro</p>
       </div>
 
       <nav className="flex-1 p-4 space-y-6">
         {menuItems.map((item) => (
           <div key={item.title}>
-            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2">
-              {item.title}
+            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-2 flex gap-3 center">
+              {<item.icon />} {item.title}
             </div>
             <div className="space-y-1">
               {item.subItems.map((sub) => (
@@ -86,7 +98,7 @@ export function Sidebar() {
                     "flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors",
                     pathname === sub.href
                       ? "bg-blue-600 text-white"
-                      : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                      : "text-slate-300 hover:bg-slate-800 hover:text-white",
                   )}
                 >
                   <span className="w-2 h-2 rounded-full bg-slate-600 mr-3" />

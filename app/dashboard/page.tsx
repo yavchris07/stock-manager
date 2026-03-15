@@ -1,11 +1,13 @@
 // src/app/(dashboard)/page.tsx
+'use client'
 import { mockStats, mockRecentActivity, mockProducts } from "@/infrastructure/mocks";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowUpRight, AlertTriangle, PackageCheck, DollarSign } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+// import { Sidebar } from "@/components/layout/sidebar";
 
 export default function DashboardPage() {
-  const chartData = mockStats.salesTrend.map((val, i) => ({ name: `Day ${i+1}`, sales: val }));
+  const chartData = mockStats.salesTrend.map((val, i) => ({ name: `Jour ${i+1}`, sales: val }));
 
   return (
     <div className="p-8 space-y-8">
@@ -18,47 +20,48 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Sales</CardTitle>
+            <CardTitle className="text-sm font-medium">Vente total</CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{mockStats.totalSales}</div>
             <p className="text-xs text-green-500 flex items-center mt-1">
-              <ArrowUpRight className="h-3 w-3 mr-1" /> +20.1% from last month
+              <ArrowUpRight className="h-3 w-3 mr-1" /> +20.1% dernier mois
             </p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Stock Value</CardTitle>
+            <CardTitle className="text-sm font-medium">En stock</CardTitle>
             <PackageCheck className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{mockStats.totalStock}</div>
-            <p className="text-xs text-slate-500 mt-1">Across 2 Warehouses</p>
+            <p className="text-xs text-slate-500 mt-1">Par deux entrepos</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Low Stock Alerts</CardTitle>
+            <CardTitle className="text-sm font-medium">Stock Alerts</CardTitle>
             <AlertTriangle className="h-4 w-4 text-red-500" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-red-600">{mockStats.lowStockAlerts}</div>
-            <p className="text-xs text-slate-500 mt-1">Requires immediate attention</p>
+            <p className="text-xs text-slate-500 mt-1">Necessite l&apos;attention immediate </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Orders</CardTitle>
+            <CardTitle className="text-sm font-medium">Commandes en cours</CardTitle>
             <PackageCheck className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{mockStats.pendingOrders}</div>
-            <p className="text-xs text-slate-500 mt-1">To be shipped today</p>
+            <p className="text-xs text-slate-500 mt-1">A livrer aujourdhui</p>
+            {/* To be shipped today */}
           </CardContent>
         </Card>
       </div>
@@ -67,10 +70,10 @@ export default function DashboardPage() {
         {/* Sales Chart */}
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Sales Analytics (7 Days)</CardTitle>
+            <CardTitle>Ventes Analyses (7 jours)</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-            <div className="h-[300px] w-full">
+            <div className="h-75 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData}>
                   <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />

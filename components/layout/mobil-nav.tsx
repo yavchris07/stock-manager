@@ -2,8 +2,8 @@
 "use client";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Sidebar } from "./Sidebar"; // Reuse existing sidebar
 import { Button } from "@/components/ui/button";
+import { Sidebar } from "./sidebar";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);

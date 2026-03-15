@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { UploadCloud, FileSpreadsheet } from "lucide-react";
-import { useToast } from "@/components/ui/ToastProvider";
+import { useToast } from "@/components/ui/toast-provider";
+// import { useToast } from "@/components/ui/ToastProvider";
 
 export default function ImportProductsPage() {
   const { addToast } = useToast();

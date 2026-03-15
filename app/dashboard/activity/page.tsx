@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PosPage = () => {
+const ActivityPage = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const PosPage = () => {
   )
 }
 
-export default PosPage
+export default ActivityPage
